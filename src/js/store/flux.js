@@ -13,7 +13,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			people:[]
+			people:[],
+			planets:[],
+			starships:[],
+			favorites:[]
 
 		},
 		actions: {
@@ -31,6 +34,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(data)
 					setStore({people:data.results})
 				})
+				fetch("https://swapi.dev/api/planets/")
+				.then((response)=>response.json())
+				.then((data)=>{
+					console.log(data)
+					setStore({planets:data.results})
+				})
+				fetch("https://swapi.dev/api/starships/")
+				.then((response)=>response.json())
+				.then((data)=>{
+					console.log(data)
+					setStore({starships:data.results})
+				})
 			},
 			changeColor: (index, color) => {
 				//get the store
@@ -45,6 +60,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			addFavorites:(name)=>{
+				let store=getStore()
+				if(store.favorites.includes(name)){
+					console.log("item already exist")
+				}else{
+					store.favorites.push(name)
+				setStore(store)
+				}
+				
 			}
 		}
 	};
