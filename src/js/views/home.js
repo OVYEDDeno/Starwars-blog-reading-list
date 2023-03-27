@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import {Planet, People, Starship} from "../component/Cards";
 import { Context } from "../store/appContext";
